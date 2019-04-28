@@ -1,0 +1,4 @@
+.ipynb_checkpoints/**/*
+data
+data-128
+train_out
