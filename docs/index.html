@@ -1,254 +1,382 @@
-<center>
-<h1>
-Deep Learning Based Spatio-temporal Interpolation in Fluid Dynamics
-</h1>
-</center>
-<h3>
-<center>
-Xiangyu Gao, Jun Luo, Harsh Mohan, Subodh C. Tiwari, Ziqi Zeng
-</center>
-</h3>
-<h4>
-<center>
-Team: Mom Tells me Professor Doesn't like Long name <br><br> University of Southern California
-</center>
-</h4>
-<h2 id="introduction">Introduction</h2>
-<div style="text-align: justify">
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+         Deep Learning Based Spatio-temporal Interpolation in Fluid Dynamics  - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.markdown-body kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram{text-align:center;background-color:inherit;border-radius:0;white-space:inherit}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.MJX_Assistive_MathML{display:none}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;padding:0 15px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc-label{opacity:.3;background-color:#ccc;border:none;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:23px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child > ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}.ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}.markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}.ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}.markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}.ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:3px;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}.focus,:focus{outline:none!important}::-moz-focus-inner{border:0!important}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" style="position: relative;"><center> <h1 id="Deep-Learning-Based-Spatio-temporal-Interpolation-in-Fluid-Dynamics"><a class="anchor hidden-xs" href="#Deep-Learning-Based-Spatio-temporal-Interpolation-in-Fluid-Dynamics" title="Deep-Learning-Based-Spatio-temporal-Interpolation-in-Fluid-Dynamics"><span class="octicon octicon-link"></span></a> Deep Learning Based Spatio-temporal Interpolation in Fluid Dynamics </h1> </center><h3 id="-Xiangyu-Gao-Jun-Luo-Harsh-Mohan-Subodh-C-Tiwari-Ziqi-Zeng"><a class="anchor hidden-xs" href="#-Xiangyu-Gao-Jun-Luo-Harsh-Mohan-Subodh-C-Tiwari-Ziqi-Zeng" title="-Xiangyu-Gao-Jun-Luo-Harsh-Mohan-Subodh-C-Tiwari-Ziqi-Zeng"><span class="octicon octicon-link"></span></a><center>
+Xiangyu Gao, Jun Luo, Harsh Mohan, Subodh C. Tiwari, Ziqi Zeng</center>
+</h3><h4 id="-Team-Mom-Tells-me-Professor-Doesnt-like-Long-name-University-of-Southern-California-"><a class="anchor hidden-xs" href="#-Team-Mom-Tells-me-Professor-Doesnt-like-Long-name-University-of-Southern-California-" title="-Team-Mom-Tells-me-Professor-Doesnt-like-Long-name-University-of-Southern-California-"><span class="octicon octicon-link"></span></a><center>
+Team: Mom Tells me Professor Doesn't like Long name <br><br>
+University of Southern California
+</center></h4><h2 id="Introduction"><a class="anchor hidden-xs" href="#Introduction" title="Introduction"><span class="octicon octicon-link"></span></a>Introduction</h2><div style="text-align: justify">
 <p>Computational Fluid dynamics is a basic building block for designing modern engineering applications such as aerodynamics systems, weather simulations, industrial pipelines. An archetypical fluid simulation involves solving complex Navier-Stokes equations, which has been designated as one of the 7 millennium problems.<a href="#ref1">[1]</a> A numerical solution of fluid-dynamics is computationally expensive and incur large storage cost. In this post, we will discuss a novel way to compress data using Deep learning spatial and temporal interpolation, contrary to common method of storing data such as temporal coarsening. Further, we can use temporal interpolation to accelerate comutational fluid dynamics.</p>
-</div>
-<p><br></p>
-<center>
-<table width="50%">
-<tr>
-<td>
-<img src="https://i.imgur.com/UZsnRZt.gif" width="100%">
-</td>
+</div><br><center><table width="50%">
+<tbody><tr>
+<td> <img src="https://i.imgur.com/UZsnRZt.gif" width="100%"> </td>
 <td>
 <img src="https://imgur.com/aC4FPMD.gif" width="100%">
 </td>
 </tr>
-</table>
-</center>
-<center>
-<i> <b> Illustration of Fluid dynamics data.</b></i>
-</center>
-<div style="text-align: justify">
-<p>Our method of temporal coarsening our data takes inspiration from a commonly known method for video interpolation to generate slow motion video. Several techniques have been proposed using single and double frame.<a href="#ref2">[2-5]</a> However, such method can be applied to scientific data where, we can save temporally coarse data and a trained network. Further, a trained network can generate the deleted frame at later time without recomputing. To furhter compress our data spatially, we employ super resolution technique, which has only been used on RGB image so far. <a href="#ref6">[6-8]</a> To best of our knowledge, no study has been performed so far using deep learning method to compress fluid dynamics data.</p>
-</div>
-<p><br></p>
-<center>
-<img src="https://i.imgur.com/5IeulmC.png" width="50%">
-</center>
-<center>
-<i> <b>An End-to-end pipeline to re-generate fine-grain data spatially and temporally.</i>
-</center>
-<p></b></p>
-<h2 id="dataset">Dataset</h2>
-<div style="text-align: justify">
-<p>Deep-learning models require large, diverse datasets across several physical scenarios. Currently, the interpolation is performed only on the density field. We write our own simulations using an open source solver, MantaFlow. We generate 40,000+ data points across two types of scenes - Plume and Karman Vortex Street.</p>
-</div>
-<p><b> insert movie of two problems </b></p>
-<h2 id="loss-function-for-fluid-dynamics">Loss Function for Fluid Dynamics</h2>
-<h2 id="network-architechure">Network Architechure</h2>
-<h3 id="temporal-interpolation">Temporal Interpolation</h3>
-<div style="text-align: justify">
-<p>Our first task involves temporal interpolation. We first use fluid state <span class="math inline"><em>S</em></span> to represent a spatial matrix consisting of several fluid properties including the velocity, density and pressure. Now, given <span class="math inline"><em>S</em><sub>0</sub></span> and <span class="math inline"><em>S</em><sub><em>N</em></sub></span> at timesteps <span class="math inline"><em>t</em><sub>0</sub></span> and <span class="math inline"><em>t</em><sub><em>N</em></sub></span> respectively, our goal is to design a function <span class="math inline"><em>f</em><sub><em>t</em></sub></span> that approximates the fluid state <span class="math inline"><em>S</em><sub><em>t</em></sub></span> at some time <span class="math inline"><em>t</em></span> such that <span class="math inline"><em>t</em> ∈ [<em>t</em><sub>0</sub>, <em>t</em><sub><em>N</em></sub>]</span>. <br></p>
-</div>
-<p><br /><span class="math display"><em>f</em><sub><em>t</em></sub>(<em>S</em><sub>0</sub>, <em>S</em><sub><em>N</em></sub>, <em>t</em><sub>0</sub>, <em>t</em><sub><em>N</em></sub>, <em>t</em>)≅<em>S</em><sub><em>t</em></sub></span><br /></p>
-<div style="text-align: justify">
-Our current model is inspired from a state-of-the-art arbitrary video frame interpolation, Super SloMo <a href="#ref2">[2]</a>. We introduced two major modification in the network as follows:
-<ul>
-<li>
-We avoid calculating bi-directional optical flow and explicitly use second submodule for end-to-end training. This model is implemented as a U-Net <a href="#ref5">[5]</a> style encoder-decoder module.
-</li>
-<li>
-We also avoid using batch normalization since we model real world quantities that can be arbitrarily large or small, and can vastly differ across different instances in a batch because of different physics.
-</li>
-</ul>
-</div>
-<center>
-<img src="https://i.imgur.com/wIHsgiI.png" width="50%">
-</center>
-<h3 id="sptial-interpolation">Sptial Interpolation</h3>
-<div style="text-align: justify">
-<p>To compress the physical simlulation spatially, we can conduct the simulation with low spatial resolution of each frame <span class="math inline"><em>S</em><sub><em>l</em></sub></span>, and use spatial deep learning models <span class="math inline"><em>F</em><sub><em>s</em></sub></span> to enhance the frame to a higher resolution <span class="math inline"><em>S</em></span>. i.e.</p>
-<p><br /><span class="math display"><em>F</em><sub><em>s</em></sub>(<em>S</em><sub><em>l</em></sub>)≅<em>S</em></span><br /></p>
-<p>We implemented and compared two deep learning architectures inspired by Super Resolution Convolutional Neural Network (<strong>SRCNN</strong>) <a href="#ref7">[7]</a> -- the vanilla SRCNN and our improved modified SRCNN. A detailed comparison of the two models are shown below.</p>
-<center>
-<img src="https://i.imgur.com/GDlZ6GN.png" width=50% >
-</center>
-<center>
-<i><b>Architecture of SRCNN and Modified SRCNN</b></i>
-</center>
-<p><br></p>
-<p>We also implemented a more recent architecture, Super Resolution Generative Adversarial Network (<strong>SRGAN</strong>) <a href="#ref8">[8]</a>, which employed the block layout, small kernels, and Parametric-ReLU as the activation function.<br> Generator uses MSE as loss function, which compares the generated data with ground truth. Discriminator uses BCE as loss function, which compares the ground truth data with True label and generated data with False label.</p>
-</div>
-<center>
-<img src="https://i.imgur.com/FZ9ZJD2.png">
-</center>
-<center>
-<i><b>SRGAN Generator</b></i>
-</center>
-<p><br></p>
-<center>
-<img src="https://i.imgur.com/LZSBP4u.png">
-</center>
-<center>
-<i><b>SRGAN Discriminator</b></i>
-</center>
-<h2 id="experiments">Experiments</h2>
-<h3 id="calculation-of-error-and-mean-relative-error">Calculation of Error and Mean Relative Error</h3>
-<div style="text-align: justify">
-<p>We used the Mean Squared Error (MSE) as the loss for training the three spatial interpolation models and for test set. We also computed the mean relative error for test set by</p>
-<p><br /><span class="math display">$$
-\sum_{i,j} \frac{y_{t_{i,j}}-y_{p_{i,j}}}{y_t}\times100\%
-$$</span><br /></p>
-<p>for each frame, where <span class="math inline"><em>y</em><sub><em>t</em><sub><em>i</em>, <em>j</em></sub></sub></span> and <span class="math inline"><em>y</em><sub><em>p</em><sub><em>i</em>, <em>j</em></sub></sub></span> mean the true and predicted value for the i-th row, j-th column grid cell.</p>
-</div>
-<h3 id="temporal-interpolation-1">Temporal Interpolation</h3>
-<div style="text-align: justify">
-<p>Based on our experimentation, our model is able to reconstruct the simulations fairly well. Besides this, our model also proved to be 30-60 times faster depending on the complexity of the simulation. A summary of our results and some reconstructions can be seen below.</p>
-</div>
-<p><br></p>
-<table align="center" width=50%>
-<tr>
-<td width="220px" align="center">
-<b>Model/Reconstruction</b>
-</th>
-<td width="220px" align="center">
-<b>Mean absolute error</b>
-</th>
-<td width="220px" align="center">
-<b>Mean relative error</b>
-</th>
+</tbody></table></center><center><i> <b> Illustration of Fluid dynamics data. (Left) Collision of two water droplets colored by curveness, (Right) Spatially decaying turbulence</b></i></center><br><div style="text-align: justify">
+Our method of temporal coarsening our data takes inspiration from a commonly known method for video interpolation to generate slow motion video. Several techniques have been proposed using single and double frame.<a href="#ref2">[2-5]</a> However,  such method can be applied to scientific data where, we can save temporally coarse data and a trained network. Further, a trained network can generate the deleted frame at later time without recomputing. To furhter compress our data spatially, we employ super resolution technique, which has only been used on RGB image so far. <a href="#ref6">[6-8]</a> To best of our knowledge, no study has been performed so far using deep learning method to compress fluid dynamics data. 
+ </div><br><center><img src="https://i.imgur.com/5IeulmC.png" width="70%"> </center><center><i> <b>An End-to-end pipeline to re-generate fine-grain data spatially and temporally.</b></i></center><h2 id="Dataset"><a class="anchor hidden-xs" href="#Dataset" title="Dataset"><span class="octicon octicon-link"></span></a>Dataset</h2><div style="text-align: justify">
+ Deep-learning models require large, diverse datasets across several physical scenarios. Currently, the interpolation is performed only on the density field. We write our own simulations using an open source solver, MantaFlow. We generate 40,000+ data points across two types of scenes - Plume and Karman Vortex Street.
+ </div><br><center><table width="50%">
+ <tbody><tr>
+ <td> <img src="https://imgur.com/nQPv8W8.gif" width="100%"> </td>
+ <td>
+ <img src="https://imgur.com/nQPv8W8.gif" width="100%">
+ </td>
+ </tr>
+ </tbody></table></center><center><i> <b> Illustration of dataset. (Left) Plume, (Right) Karman Vortex Street, both colored with density of tracing particles</b></i></center><br><p><b> insert movie for plume </b></p><h2 id="Loss-Function-for-Fluid-Dynamics"><a class="anchor hidden-xs" href="#Loss-Function-for-Fluid-Dynamics" title="Loss-Function-for-Fluid-Dynamics"><span class="octicon octicon-link"></span></a>Loss Function for Fluid Dynamics</h2><h2 id="Network-Architechure"><a class="anchor hidden-xs" href="#Network-Architechure" title="Network-Architechure"><span class="octicon octicon-link"></span></a>Network Architechure</h2><h3 id="Temporal-Interpolation"><a class="anchor hidden-xs" href="#Temporal-Interpolation" title="Temporal-Interpolation"><span class="octicon octicon-link"></span></a>Temporal Interpolation</h3><div style="text-align: justify">
+<p>Our first task involves temporal interpolation. We first use fluid state <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>S</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 0.881em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.726em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1000.73em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>S</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">S</script></span> to represent a spatial matrix consisting of several fluid properties including the velocity, density and pressure. Now, given <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>S</mi><mn>0</mn></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-4" style="width: 1.346em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.087em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.346em, 1001.09em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-5"><span class="msubsup" id="MathJax-Span-6"><span style="display: inline-block; position: relative; width: 1.087em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-7" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mn" id="MathJax-Span-8" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">0</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>S</mi><mn>0</mn></msub></math></span></span><script type="math/tex" id="MathJax-Element-2">S_0</script></span> and <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>S</mi><mi>N</mi></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-9" style="width: 1.655em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.346em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.346em, 1001.35em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-10"><span class="msubsup" id="MathJax-Span-11"><span style="display: inline-block; position: relative; width: 1.346em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-12" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mi" id="MathJax-Span-13" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑁<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>S</mi><mi>N</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-3">S_N</script></span> at timesteps <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>t</mi><mn>0</mn></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-14" style="width: 0.881em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.726em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.449em, 1000.73em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-15"><span class="msubsup" id="MathJax-Span-16"><span style="display: inline-block; position: relative; width: 0.726em; height: 0px;"><span style="position: absolute; clip: rect(3.257em, 1000.26em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-17" style="font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.313em;"><span class="mn" id="MathJax-Span-18" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">0</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.003em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>t</mi><mn>0</mn></msub></math></span></span><script type="math/tex" id="MathJax-Element-4">t_0</script></span> and <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>t</mi><mi>N</mi></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-19" style="width: 1.294em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.036em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.449em, 1001.04em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-20"><span class="msubsup" id="MathJax-Span-21"><span style="display: inline-block; position: relative; width: 1.036em; height: 0px;"><span style="position: absolute; clip: rect(3.257em, 1000.26em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-22" style="font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.313em;"><span class="mi" id="MathJax-Span-23" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑁<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.003em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>t</mi><mi>N</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-5">t_N</script></span> respectively, our goal is to design a function <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>f</mi><mi>t</mi></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-24" style="width: 1.036em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.829em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.346em, 1000.83em, 2.534em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-25"><span class="msubsup" id="MathJax-Span-26"><span style="display: inline-block; position: relative; width: 0.829em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.62em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-27" style="font-family: STIXGeneral-Italic;">𝑓<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.571em;"><span class="mi" id="MathJax-Span-28" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.309em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>f</mi><mi>t</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-6">f_t</script></span> that approximates the fluid state <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>S</mi><mi>t</mi></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-29" style="width: 1.139em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.346em, 1000.93em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-30"><span class="msubsup" id="MathJax-Span-31"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-32" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mi" id="MathJax-Span-33" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>S</mi><mi>t</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-7">S_t</script></span> at some time <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-8-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-34" style="width: 0.416em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.313em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.759em, 1000.26em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-35"><span class="mi" id="MathJax-Span-36" style="font-family: STIXGeneral-Italic;">𝑡</span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.816em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi></math></span></span><script type="math/tex" id="MathJax-Element-8">t</script></span> such that <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-9-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi><mo>&amp;#x2208;</mo><mo stretchy=&quot;false&quot;>[</mo><msub><mi>t</mi><mn>0</mn></msub><mo>,</mo><msub><mi>t</mi><mi>N</mi></msub><mo stretchy=&quot;false&quot;>]</mo></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-37" style="width: 5.478em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.496em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1004.39em, 2.792em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-38"><span class="mi" id="MathJax-Span-39" style="font-family: STIXGeneral-Italic;">𝑡</span><span class="mo" id="MathJax-Span-40" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">∈</span><span class="mo" id="MathJax-Span-41" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">[</span><span class="msubsup" id="MathJax-Span-42"><span style="display: inline-block; position: relative; width: 0.726em; height: 0px;"><span style="position: absolute; clip: rect(3.257em, 1000.26em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-43" style="font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.313em;"><span class="mn" id="MathJax-Span-44" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">0</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-45" style="font-family: STIXGeneral-Regular;">,</span><span class="msubsup" id="MathJax-Span-46" style="padding-left: 0.209em;"><span style="display: inline-block; position: relative; width: 1.036em; height: 0px;"><span style="position: absolute; clip: rect(3.257em, 1000.26em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-47" style="font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.313em;"><span class="mi" id="MathJax-Span-48" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑁<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-49" style="font-family: STIXGeneral-Regular;">]</span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi><mo>∈</mo><mo stretchy="false">[</mo><msub><mi>t</mi><mn>0</mn></msub><mo>,</mo><msub><mi>t</mi><mi>N</mi></msub><mo stretchy="false">]</mo></math></span></span><script type="math/tex" id="MathJax-Element-9">t \in [t_0,t_N]</script></span>. <br></p>
+ </div><p><span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-10-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><msub><mi>f</mi><mi>t</mi></msub><mo stretchy=&quot;false&quot;>(</mo><msub><mi>S</mi><mn>0</mn></msub><mo>,</mo><msub><mi>S</mi><mi>N</mi></msub><mo>,</mo><msub><mi>t</mi><mn>0</mn></msub><mo>,</mo><msub><mi>t</mi><mi>N</mi></msub><mo>,</mo><mi>t</mi><mo stretchy=&quot;false&quot;>)</mo><mo>&amp;#x2245;</mo><msub><mi>S</mi><mi>t</mi></msub></math>" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-50" style="width: 12.193em; display: inline-block;"><span style="display: inline-block; position: relative; width: 10.075em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1010.08em, 2.843em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-51"><span class="msubsup" id="MathJax-Span-52"><span style="display: inline-block; position: relative; width: 0.829em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.62em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-53" style="font-family: STIXGeneral-Italic;">𝑓<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.571em;"><span class="mi" id="MathJax-Span-54" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-55" style="font-family: STIXGeneral-Regular;">(</span><span class="msubsup" id="MathJax-Span-56"><span style="display: inline-block; position: relative; width: 1.087em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-57" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mn" id="MathJax-Span-58" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">0</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-59" style="font-family: STIXGeneral-Regular;">,</span><span class="msubsup" id="MathJax-Span-60" style="padding-left: 0.209em;"><span style="display: inline-block; position: relative; width: 1.346em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-61" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mi" id="MathJax-Span-62" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑁<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-63" style="font-family: STIXGeneral-Regular;">,</span><span class="msubsup" id="MathJax-Span-64" style="padding-left: 0.209em;"><span style="display: inline-block; position: relative; width: 0.726em; height: 0px;"><span style="position: absolute; clip: rect(3.257em, 1000.26em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-65" style="font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.313em;"><span class="mn" id="MathJax-Span-66" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">0</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-67" style="font-family: STIXGeneral-Regular;">,</span><span class="msubsup" id="MathJax-Span-68" style="padding-left: 0.209em;"><span style="display: inline-block; position: relative; width: 1.036em; height: 0px;"><span style="position: absolute; clip: rect(3.257em, 1000.26em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-69" style="font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.313em;"><span class="mi" id="MathJax-Span-70" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑁<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-71" style="font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-72" style="font-family: STIXGeneral-Italic; padding-left: 0.209em;">𝑡</span><span class="mo" id="MathJax-Span-73" style="font-family: STIXGeneral-Regular;">)</span><span class="mo" id="MathJax-Span-74" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">≅</span><span class="msubsup" id="MathJax-Span-75" style="padding-left: 0.313em;"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-76" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mi" id="MathJax-Span-77" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.309em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msub><mi>f</mi><mi>t</mi></msub><mo stretchy="false">(</mo><msub><mi>S</mi><mn>0</mn></msub><mo>,</mo><msub><mi>S</mi><mi>N</mi></msub><mo>,</mo><msub><mi>t</mi><mn>0</mn></msub><mo>,</mo><msub><mi>t</mi><mi>N</mi></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>≅</mo><msub><mi>S</mi><mi>t</mi></msub></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-10">
+ f_t(S_0, S_N, t_0, t_N, t ) \cong S_t
+ </script></span></p><div style="text-align: justify">
+<p>Our current model is inspired from a state-of-the-art arbitrary video frame interpolation, Super SloMo <a href="#ref2">[2]</a>. We introduced two major modification in the network as follows:</p>
+ <ul>
+ <li> We avoid calculating bi-directional optical flow and explicitly use second submodule for end-to-end training. This model is implemented as a U-Net <a href="#ref5">[5]</a> style encoder-decoder module. </li>
+ <li>We also avoid using batch normalization since we model real world quantities that can be arbitrarily large or small, and can vastly differ across different instances in a batch because of different physics. </li>
+ </ul>
+ </div><center><img src="https://i.imgur.com/wIHsgiI.png" width="800%"> </center><h3 id="Sptial-Interpolation"><a class="anchor hidden-xs" href="#Sptial-Interpolation" title="Sptial-Interpolation"><span class="octicon octicon-link"></span></a>Sptial Interpolation</h3><div style="text-align: justify">
+<p>To compress the physical simlulation spatially, we can conduct the simulation with low spatial resolution of each frame <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-11-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>S</mi><mi>l</mi></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-78" style="width: 1.139em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.346em, 1000.93em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-79"><span class="msubsup" id="MathJax-Span-80"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-81" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mi" id="MathJax-Span-82" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑙</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>S</mi><mi>l</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-11">S_l</script></span>, and use spatial deep learning models <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-12-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>F</mi><mi>s</mi></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-83" style="width: 1.191em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.984em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.346em, 1000.98em, 2.482em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-84"><span class="msubsup" id="MathJax-Span-85"><span style="display: inline-block; position: relative; width: 0.984em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.73em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-86" style="font-family: STIXGeneral-Italic;">𝐹<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.106em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.622em;"><span class="mi" id="MathJax-Span-87" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑠</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mi>s</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-12">F_s</script></span> to enhance the frame to a higher resolution <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-13-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>S</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-88" style="width: 0.881em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.726em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1000.73em, 2.637em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-89"><span class="mi" id="MathJax-Span-90" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>S</mi></math></span></span><script type="math/tex" id="MathJax-Element-13">S</script></span>. i.e.</p>
+<p><span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-14-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><msub><mi>F</mi><mi>s</mi></msub><mo stretchy=&quot;false&quot;>(</mo><msub><mi>S</mi><mi>l</mi></msub><mo stretchy=&quot;false&quot;>)</mo><mo>&amp;#x2245;</mo><mi>S</mi></math>" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-91" style="width: 5.581em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.6em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.655em, 1004.6em, 2.792em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-92"><span class="msubsup" id="MathJax-Span-93"><span style="display: inline-block; position: relative; width: 0.984em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.73em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-94" style="font-family: STIXGeneral-Italic;">𝐹<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.106em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.622em;"><span class="mi" id="MathJax-Span-95" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑠</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-96" style="font-family: STIXGeneral-Regular;">(</span><span class="msubsup" id="MathJax-Span-97"><span style="display: inline-block; position: relative; width: 0.932em; height: 0px;"><span style="position: absolute; clip: rect(3.153em, 1000.67em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-98" style="font-family: STIXGeneral-Italic;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.674em;"><span class="mi" id="MathJax-Span-99" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑙</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-100" style="font-family: STIXGeneral-Regular;">)</span><span class="mo" id="MathJax-Span-101" style="font-family: STIXGeneral-Regular; padding-left: 0.313em;">≅</span><span class="mi" id="MathJax-Span-102" style="font-family: STIXGeneral-Italic; padding-left: 0.313em;">𝑆<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.054em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.247em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msub><mi>F</mi><mi>s</mi></msub><mo stretchy="false">(</mo><msub><mi>S</mi><mi>l</mi></msub><mo stretchy="false">)</mo><mo>≅</mo><mi>S</mi></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-14">
+ F_s(S_l) \cong S
+ </script></span></p>
+<p>We implemented and compared two deep learning architectures inspired by Super Resolution Convolutional Neural Network (<strong>SRCNN</strong>) <a href="#ref7">[7]</a> – the vanilla SRCNN and our improved modified SRCNN. A detailed comparison of the two models are shown below.</p>
+ <center><img src="https://i.imgur.com/GDlZ6GN.png" width="70%"></center>
+ <center><i><b>Architecture of SRCNN and Modified SRCNN</b></i></center><br>
+<p>We also implemented a more recent architecture, Super Resolution Generative Adversarial Network (<strong>SRGAN</strong>) <a href="#ref8">[8]</a>, which employed the block layout, small kernels, and Parametric-ReLU as the activation function.<br></p>
+<p>Generator uses Mean Squared Error (MSE) as loss function, which compares the generated data with ground truth. Discriminator uses Binary Cross Entropy (BCE) as loss function, which compares the ground truth data with True label and generated data with False label.</p>
+ </div><center><img src="https://i.imgur.com/FZ9ZJD2.png"></center><center><i><b>SRGAN Generator</b></i></center><br><center><img src="https://i.imgur.com/LZSBP4u.png"></center><center><i><b>SRGAN Discriminator</b></i></center><h2 id="Experiments"><a class="anchor hidden-xs" href="#Experiments" title="Experiments"><span class="octicon octicon-link"></span></a>Experiments</h2><h3 id="Calculation-of-Error-and-Mean-Relative-Error"><a class="anchor hidden-xs" href="#Calculation-of-Error-and-Mean-Relative-Error" title="Calculation-of-Error-and-Mean-Relative-Error"><span class="octicon octicon-link"></span></a>Calculation of Error and Mean Relative Error</h3><div style="text-align: justify">
+<p>We used the MSE as the loss for training and test set. We also computed the mean relative error for test set by</p>
+<p><span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-15-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><munder><mo>&amp;#x2211;</mo><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mfrac><mrow><msub><mi>y</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msub><mi>t</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub><mo>&amp;#x2212;</mo><msub><mi>y</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msub><mi>p</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub></mrow><msub><mi>y</mi><mi>t</mi></msub></mfrac><mo>&amp;#x00D7;</mo><mn>100</mn><mi mathvariant=&quot;normal&quot;>&amp;#x0025;</mi></math>" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-103" style="width: 11.16em; display: inline-block;"><span style="display: inline-block; position: relative; width: 9.197em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(0.932em, 1009.14em, 4.032em, -999.997em); top: -2.477em; left: 0em;"><span class="mrow" id="MathJax-Span-104"><span class="munderover" id="MathJax-Span-105"><span style="display: inline-block; position: relative; width: 1.294em; height: 0px;"><span style="position: absolute; clip: rect(2.843em, 1001.19em, 4.6em, -999.997em); top: -3.975em; left: 0em;"><span class="mo" id="MathJax-Span-106" style="font-family: STIXSizeOneSym; vertical-align: -0.514em;">∑</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; clip: rect(3.412em, 1000.67em, 4.341em, -999.997em); top: -2.838em; left: 0.313em;"><span class="texatom" id="MathJax-Span-107"><span class="mrow" id="MathJax-Span-108"><span class="mi" id="MathJax-Span-109" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑖</span><span class="mo" id="MathJax-Span-110" style="font-size: 70.7%; font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-111" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑗</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mfrac" id="MathJax-Span-112" style="padding-left: 0.209em;"><span style="display: inline-block; position: relative; width: 4.083em; height: 0px; margin-right: 0.106em; margin-left: 0.106em;"><span style="position: absolute; clip: rect(3.257em, 1003.98em, 4.548em, -999.997em); top: -4.853em; left: 50%; margin-left: -1.96em;"><span class="mrow" id="MathJax-Span-113"><span class="msubsup" id="MathJax-Span-114"><span style="display: inline-block; position: relative; width: 1.346em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.52em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-115" style="font-family: STIXGeneral-Italic;">𝑦</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="texatom" id="MathJax-Span-116"><span class="mrow" id="MathJax-Span-117"><span class="msubsup" id="MathJax-Span-118"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px;"><span style="position: absolute; clip: rect(3.412em, 1000.21em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-119" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.871em; left: 0.209em;"><span class="texatom" id="MathJax-Span-120"><span class="mrow" id="MathJax-Span-121"><span class="mi" id="MathJax-Span-122" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑖</span><span class="mo" id="MathJax-Span-123" style="font-size: 50%; font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-124" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑗</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span class="mo" id="MathJax-Span-125" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">−</span><span class="msubsup" id="MathJax-Span-126" style="padding-left: 0.261em;"><span style="display: inline-block; position: relative; width: 1.449em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.52em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-127" style="font-family: STIXGeneral-Italic;">𝑦</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="texatom" id="MathJax-Span-128"><span class="mrow" id="MathJax-Span-129"><span class="msubsup" id="MathJax-Span-130"><span style="display: inline-block; position: relative; width: 0.881em; height: 0px;"><span style="position: absolute; clip: rect(3.515em, 1000.31em, 4.29em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-131" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑝</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.364em;"><span class="texatom" id="MathJax-Span-132"><span class="mrow" id="MathJax-Span-133"><span class="mi" id="MathJax-Span-134" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑖</span><span class="mo" id="MathJax-Span-135" style="font-size: 50%; font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-136" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑗</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; clip: rect(3.36em, 1000.78em, 4.341em, -999.997em); top: -3.303em; left: 50%; margin-left: -0.411em;"><span class="msubsup" id="MathJax-Span-137"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.52em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-138" style="font-family: STIXGeneral-Italic;">𝑦</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="mi" id="MathJax-Span-139" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; clip: rect(0.881em, 1004.08em, 1.242em, -999.997em); top: -1.289em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.3px solid; width: 4.083em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.087em;"></span></span></span></span><span class="mo" id="MathJax-Span-140" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">×</span><span class="mn" id="MathJax-Span-141" style="font-family: STIXGeneral-Regular; padding-left: 0.261em;">100</span><span class="mi" id="MathJax-Span-142" style="font-family: STIXGeneral-Regular;">%</span></span><span style="display: inline-block; width: 0px; height: 2.482em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -1.747em; border-left: 0px solid; width: 0px; height: 3.503em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><munder><mo>∑</mo><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mfrac><mrow><msub><mi>y</mi><mrow class="MJX-TeXAtom-ORD"><msub><mi>t</mi><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub><mo>−</mo><msub><mi>y</mi><mrow class="MJX-TeXAtom-ORD"><msub><mi>p</mi><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub></mrow><msub><mi>y</mi><mi>t</mi></msub></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-15">
+ \sum_{i,j} \frac{y_{t_{i,j}}-y_{p_{i,j}}}{y_t}\times100\%
+ </script></span></p>
+<p>for each frame, where <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-16-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>y</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msub><mi>t</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-143" style="width: 1.655em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.346em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.552em, 1001.35em, 2.689em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-144"><span class="msubsup" id="MathJax-Span-145"><span style="display: inline-block; position: relative; width: 1.346em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.52em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-146" style="font-family: STIXGeneral-Italic;">𝑦</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="texatom" id="MathJax-Span-147"><span class="mrow" id="MathJax-Span-148"><span class="msubsup" id="MathJax-Span-149"><span style="display: inline-block; position: relative; width: 0.777em; height: 0px;"><span style="position: absolute; clip: rect(3.412em, 1000.21em, 4.135em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-150" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑡</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.871em; left: 0.209em;"><span class="texatom" id="MathJax-Span-151"><span class="mrow" id="MathJax-Span-152"><span class="mi" id="MathJax-Span-153" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑖</span><span class="mo" id="MathJax-Span-154" style="font-size: 50%; font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-155" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑗</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.066em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>y</mi><mrow class="MJX-TeXAtom-ORD"><msub><mi>t</mi><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub></math></span></span><script type="math/tex" id="MathJax-Element-16">y_{t_{i,j}}</script></span> and <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-17-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>y</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><msub><mi>p</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-156" style="width: 1.759em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.449em; height: 0px; font-size: 121%;"><span style="position: absolute; clip: rect(1.552em, 1001.45em, 2.74em, -999.997em); top: -2.167em; left: 0em;"><span class="mrow" id="MathJax-Span-157"><span class="msubsup" id="MathJax-Span-158"><span style="display: inline-block; position: relative; width: 1.449em; height: 0px;"><span style="position: absolute; clip: rect(3.36em, 1000.52em, 4.341em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-159" style="font-family: STIXGeneral-Italic;">𝑦</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.519em;"><span class="texatom" id="MathJax-Span-160"><span class="mrow" id="MathJax-Span-161"><span class="msubsup" id="MathJax-Span-162"><span style="display: inline-block; position: relative; width: 0.881em; height: 0px;"><span style="position: absolute; clip: rect(3.515em, 1000.31em, 4.29em, -999.997em); top: -3.975em; left: 0em;"><span class="mi" id="MathJax-Span-163" style="font-size: 70.7%; font-family: STIXGeneral-Italic;">𝑝</span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span><span style="position: absolute; top: -3.82em; left: 0.364em;"><span class="texatom" id="MathJax-Span-164"><span class="mrow" id="MathJax-Span-165"><span class="mi" id="MathJax-Span-166" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑖</span><span class="mo" id="MathJax-Span-167" style="font-size: 50%; font-family: STIXGeneral-Regular;">,</span><span class="mi" id="MathJax-Span-168" style="font-size: 50%; font-family: STIXGeneral-Italic;">𝑗</span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.98em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.172em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.559em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>y</mi><mrow class="MJX-TeXAtom-ORD"><msub><mi>p</mi><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></msub></math></span></span><script type="math/tex" id="MathJax-Element-17">y_{p_{i,j}}</script></span> mean the true and predicted value for the i-th row, j-th column grid cell.</p>
+ </div><h3 id="Temporal-Interpolation1"><a class="anchor hidden-xs" href="#Temporal-Interpolation1" title="Temporal-Interpolation1"><span class="octicon octicon-link"></span></a>Temporal Interpolation</h3><div style="text-align: justify">
+<p>Based on our experimentation, our model is able to reconstruct the simulations fairly well. Besides this, our model is also proved to be 30-60 times faster depending on the complexity of the simulation. A summary of our results and some reconstructions can be seen below.</p>
+ </div><br><table align="center" width="50%">
+ <tbody><tr>
+ <td width="220px" align="center"><b>Model/Reconstruction</b>
+ </td><td width="220px" align="center"><b>Mean absolute error</b>
+ </td><td width="220px" align="center"><b>Mean relative error</b>
+ </td></tr>
+ <tr>
+ <td align="center">Base - 1 frame window</td>
+ <td align="center"><b>0.00080</b></td>
+ <td align="center"><b>3.37%</b></td>
+ </tr>
+ <tr>
+ <td align="center">Base - 2 frames window</td>
+ <td align="center">0.0018</td>
+ <td align="center">7.79%</td>
+ </tr>
+ <tr>
+ <td align="center">Base - 3 frames window</td>
+ <td align="center">0.0030</td>
+ <td align="center">12.68%</td>
+ </tr>
+ </tbody></table><center><i><b>Error of Temperal Interpolation</b></i></center><br><img src="https://imgur.com/Fi0AMZG.gif"><img src="https://imgur.com/RCvyTXR.gif"><table width="100%">
+ <tbody><tr> 
+ <td width="220px" align="center"> <b> Original </b> </td>
+ <td width="220px" align="center"> <b> Reconstructed</b></td>
+ <td width="220px" align="center"> <b> Error </b> </td>
+ </tr>
+ <tr>
+ 
+ </tr>
+ <tr>
+ 
+ </tr>
+ </tbody></table><center><i><b>Comparison between original and reconstructed data</b></i></center><h3 id="Sptial-Interpolation1"><a class="anchor hidden-xs" href="#Sptial-Interpolation1" title="Sptial-Interpolation1"><span class="octicon octicon-link"></span></a>Sptial Interpolation</h3><div style="text-align: justify">
+<p>The reconstruction results of all three spatial models are reasonable. SRGAN model turns out to have the smallest reconstruction loss among the three. Our improved modified SRCNN comes second. A summary of the results is shown below. Note that although the results below are shown in RGB format, the actual and predicted values of our models have actual physical meaning, so these values are not bounded by 0 and 255.</p>
+</div><br><table align="center">
+<tbody><tr>
+<td width="220px" align="center"><b>Model</b>
+</td><td width="220px" align="center"><b>Mean absolute error</b>
+</td><td width="220px" align="center"><b>Mean relative error</b>
+</td></tr>
+ <tr>
+<td align="center">SRCNN</td>
+<td align="center">0.0018</td>
+<td align="center">15.23%</td>
 </tr>
 <tr>
-<td align="center">
-Base - 1 frame window
-</td>
-<td align="center">
-<b>0.00080</b>
-</td>
-<td align="center">
-<b>3.37%</b>
-</td>
+<td align="center">Modified SRCNN</td>
+<td align="center">0.0014</td>
+<td align="center">12.47%</td>
 </tr>
 <tr>
-<td align="center">
-Base - 2 frames window
-</td>
-<td align="center">
-0.0018
-</td>
-<td align="center">
-7.79%
-</td>
+<td align="center">SRGAN</td>
+<td align="center"><b>0.0006</b></td>
+<td align="center"><b>11.52%</b></td>
 </tr>
-<tr>
-<td align="center">
-Base - 3 frames window
-</td>
-<td align="center">
-0.0030
-</td>
-<td align="center">
-12.68%
-</td>
-</tr>
-</table>
-<table width="50%">
-<tr>
-<td width="220px" align="center">
-<b> Original </b>
-</td>
-<td width="220px" align="center">
-<b> Reconstructed</b>
-</td>
-<td width="220px" align="center">
-<b> Error </b>
-</td>
-</tr>
-<tr>
-<img src="https://imgur.com/Fi0AMZG.gif">
-</tr>
-<tr>
-<img src="https://imgur.com/RCvyTXR.gif">
-</tr>
-</table>
-<h3 id="sptial-interpolation-1">Sptial Interpolation</h3>
-<div style="text-align: justify">
-<p>The reconstruction results of all three spatial models are reasonable. SRGAN model turns out to have the smallest reconstruction loss among the three. Our improved modified SRCNN comes second. A summary of the results is shown below. Note that although the results below are shown in RGB format, the actual and predicted value our models predict are of actual physical meaning.</p>
-</div>
-<p><br></p>
-<table align="center">
-<tr>
-<td width="220px" align="center">
-<b>Model</b>
-</th>
-<td width="220px" align="center">
-<b>Mean absolute error</b>
-</th>
-<td width="220px" align="center">
-<b>Mean relative error</b>
-</th>
-</tr>
-<tr>
-<td align="center">
-SRCNN
-</td>
-<td align="center">
-0.0018
-</td>
-<td align="center">
-15.23%
-</td>
-</tr>
-<tr>
-<td align="center">
-Modified SRCNN
-</td>
-<td align="center">
-0.0014
-</td>
-<td align="center">
-12.47%
-</td>
-</tr>
-<tr>
-<td align="center">
-SRGAN
-</td>
-<td align="center">
-<b>0.0006</b>
-</td>
-<td align="center">
-<b>11.52%</b>
-</td>
-</tr>
-</table>
-<center>
-<i><b>Error of Different Models in Spatial Interpolation</b></i>
-</center>
-<p><br></p>
-<p><img src="https://i.imgur.com/PDxqLIl.png"></p>
-<div style="text-align: justify">
-
-</div>
-<p><br></p>
-<div style="text-align: justify">
-<p>We randomly generated some outputs with randomly generated inputs. As shown in the figures above, the reconstructed results of SRCNN with size 128x128 from the low-resolution frame with size 32x32 is more blurry than the results of SRGAN. SRCNN produces outcomes with more granular sensation, while SR-GAN has more artifacts.</p>
-</div>
-<h2 id="future-work">Future work</h2>
-<ul>
+</tbody></table><center><i><b>Error of Different Models in Spatial Interpolation</b></i></center><br><p><img src="https://i.imgur.com/PDxqLIl.png"><br></p><center><i><b>Comparison between original and reconstructed data</b></i></center><div style="text-align: justify">
+</div><br><div style="text-align: justify">
+We randomly generated some outputs with randomly generated inputs. As shown in the figures above, the reconstructed results of SRCNN with size 128x128 from the low-resolution frame with size 32x32 is more blurry than the results of SRGAN. SRCNN produces outcomes with more granular sensation, while SR-GAN has more artifacts.
+</div><h2 id="Future-work"><a class="anchor hidden-xs" href="#Future-work" title="Future-work"><span class="octicon octicon-link"></span></a>Future work</h2><ul>
 <li>Experiment with continuous filter convolutional neural networks.</li>
 <li>Improve Navier-Stokes constraints loss term implementation.</li>
 <li>Experiment and train on several other physical phenomena.</li>
+</ul><h2 id="Conclusion"><a class="anchor hidden-xs" href="#Conclusion" title="Conclusion"><span class="octicon octicon-link"></span></a>Conclusion</h2><p>We have created a novel way to compress fluid-dynamic data and accelerate fluid dynamics simulations using spatial and temporal interpolation.</p><h2 id="References"><a class="anchor hidden-xs" href="#References" title="References"><span class="octicon octicon-link"></span></a>References</h2><p><span id="ref1">1</span>- A. M. Jaffe. The Millennium Grand Challenge in Mathematics. Notices of the AMS 53(6):652-660, 2000<br>
+<span id="ref2">2</span>- H. Jiang, D. Sun, V. Jampani, M.-H. Yang, E. Learned-Miller, J. Kautz. Super SloMo: High Quality Estimation of Multiple Intermediate Frames for Video Interpolation. CVPR, 2018<br>
+<span id="ref3">3</span>- Z. Liu, R. Yeh, X. Tang, Y. Liu, and A. Agarwala. Video frame synthesis using deep voxel flow. In ICCV, 2017.<br>
+<span id="ref4">4</span>- S. Niklaus, L. Mai, and F. Liu. Video frame interpolation via adaptive convolution. In CVPR, 2017<br>
+<span id="ref5">5</span>- S. Niklaus, L. Mai, and F. Liu. Video frame interpolation via adaptive separable convolution. In ICCV, 2017.<br>
+<span id="ref6">6</span>- O. Ronneberger, P. Fischer, T. Brox. U-Net: Convolutional Networks for Biomedical Image Segmentation, arXiv:1505.04597v1.<br>
+<span id="ref7">7</span>- C. Dong, C. C. Loy, K. He, X. Tang. Image Super-Resolution Using Deep Convolutional Networks, arxiv:1501.00092<br>
+<span id="ref8">8</span>- C. Ledig, L. Theis, F. Huszar, J. Caballero, A. Cunningham, A. Acosta, A. Aitken, A. Tejani, J. Totz, Z. Wang, Wenzhe Shi. Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network, arXiv:1609.04802v5</p></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class="invisable-node"><ul class="nav">
+<li class="invisable-node"><ul class="nav">
+<li><a href="#-Xiangyu-Gao-Jun-Luo-Harsh-Mohan-Subodh-C-Tiwari-Ziqi-Zeng" title="
+Xiangyu Gao, Jun Luo, Harsh Mohan, Subodh C. Tiwari, Ziqi Zeng
+">
+Xiangyu Gao, Jun Luo, Harsh Mohan, Subodh C. Tiwari, Ziqi Zeng
+</a></li>
 </ul>
-<h2 id="conclusion">Conclusion</h2>
-<p>We have created a novel way to compress fluid-dynamic data and accelerate fluid dynamics simulations using spatial and temporal interpolation.</p>
-<h2 id="references">References</h2>
-<p><span id="ref1" name="ref1">1</span>- A. M. Jaffe. The Millennium Grand Challenge in Mathematics. Notices of the AMS 53(6):652-660, 2000 <span id="ref2" name="ref2">2</span>- H. Jiang, D. Sun, V. Jampani, M.-H. Yang, E. Learned-Miller, J. Kautz. Super SloMo: High Quality Estimation of Multiple Intermediate Frames for Video Interpolation. CVPR, 2018 <span id="ref3" name="ref3">3</span>- Z. Liu, R. Yeh, X. Tang, Y. Liu, and A. Agarwala. Video frame synthesis using deep voxel flow. In ICCV, 2017. <span id="ref4" name="ref4">4</span>- S. Niklaus, L. Mai, and F. Liu. Video frame interpolation via adaptive convolution. In CVPR, 2017 <span id="ref5" name="ref5">5</span>- S. Niklaus, L. Mai, and F. Liu. Video frame interpolation via adaptive separable convolution. In ICCV, 2017. <span id="ref6" name="ref6">6</span>- O. Ronneberger, P. Fischer, T. Brox. U-Net: Convolutional Networks for Biomedical Image Segmentation, arXiv:1505.04597v1. <span id="ref7" name="ref7">7</span>- C. Dong, C. C. Loy, K. He, X. Tang. Image Super-Resolution Using Deep Convolutional Networks, arxiv:1501.00092 <span id="ref8" name="ref8">8</span>- C. Ledig, L. Theis, F. Huszar, J. Caballero, A. Cunningham, A. Acosta, A. Aitken, A. Tejani, J. Totz, Z. Wang, Wenzhe Shi. Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network, arXiv:1609.04802v5</p>
-<h2 id="appendix-and-faq">Appendix and FAQ</h2>
-<p>:::info <strong>Find this document incomplete?</strong> Leave a comment! :::</p>
-<h6 id="tags-templates-documentation">tags: <code>Templates</code> <code>Documentation</code></h6>
+</li>
+<li><a href="#Introduction" title="Introduction">Introduction</a></li>
+<li><a href="#Dataset" title="Dataset">Dataset</a></li>
+<li><a href="#Loss-Function-for-Fluid-Dynamics" title="Loss Function for Fluid Dynamics">Loss Function for Fluid Dynamics</a></li>
+<li><a href="#Network-Architechure" title="Network Architechure">Network Architechure</a><ul class="nav">
+<li><a href="#Temporal-Interpolation" title="Temporal Interpolation">Temporal Interpolation</a></li>
+<li><a href="#Sptial-Interpolation" title="Sptial Interpolation">Sptial Interpolation</a></li>
+</ul>
+</li>
+<li><a href="#Experiments" title="Experiments">Experiments</a><ul class="nav">
+<li><a href="#Calculation-of-Error-and-Mean-Relative-Error" title="Calculation of Error and Mean Relative Error">Calculation of Error and Mean Relative Error</a></li>
+<li><a href="#Temporal-Interpolation1" title="Temporal Interpolation">Temporal Interpolation</a></li>
+<li><a href="#Sptial-Interpolation1" title="Sptial Interpolation">Sptial Interpolation</a></li>
+</ul>
+</li>
+<li><a href="#Future-work" title="Future work">Future work</a></li>
+<li><a href="#Conclusion" title="Conclusion">Conclusion</a></li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
+        <div class="toc"><ul class="nav">
+<li class="invisable-node"><ul class="nav">
+<li class="invisable-node"><ul class="nav">
+<li><a href="#-Xiangyu-Gao-Jun-Luo-Harsh-Mohan-Subodh-C-Tiwari-Ziqi-Zeng" title="
+Xiangyu Gao, Jun Luo, Harsh Mohan, Subodh C. Tiwari, Ziqi Zeng
+">
+Xiangyu Gao, Jun Luo, Harsh Mohan, Subodh C. Tiwari, Ziqi Zeng
+</a></li>
+</ul>
+</li>
+<li><a href="#Introduction" title="Introduction">Introduction</a></li>
+<li><a href="#Dataset" title="Dataset">Dataset</a></li>
+<li><a href="#Loss-Function-for-Fluid-Dynamics" title="Loss Function for Fluid Dynamics">Loss Function for Fluid Dynamics</a></li>
+<li><a href="#Network-Architechure" title="Network Architechure">Network Architechure</a><ul class="nav">
+<li><a href="#Temporal-Interpolation" title="Temporal Interpolation">Temporal Interpolation</a></li>
+<li><a href="#Sptial-Interpolation" title="Sptial Interpolation">Sptial Interpolation</a></li>
+</ul>
+</li>
+<li><a href="#Experiments" title="Experiments">Experiments</a><ul class="nav">
+<li><a href="#Calculation-of-Error-and-Mean-Relative-Error" title="Calculation of Error and Mean Relative Error">Calculation of Error and Mean Relative Error</a></li>
+<li><a href="#Temporal-Interpolation1" title="Temporal Interpolation">Temporal Interpolation</a></li>
+<li><a href="#Sptial-Interpolation1" title="Sptial Interpolation">Sptial Interpolation</a></li>
+</ul>
+</li>
+<li><a href="#Future-work" title="Future work">Future work</a></li>
+<li><a href="#Conclusion" title="Conclusion">Conclusion</a></li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
