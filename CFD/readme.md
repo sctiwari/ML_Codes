@@ -1,4 +1,4 @@
-# Deep Temporal Fluid State Prediction
+# Deep Temporal Compression
 ----------------------------------------------------
 
 ## Project layout
