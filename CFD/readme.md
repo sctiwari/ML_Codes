@@ -1,4 +1,4 @@
-# CSCI 599 Project - Temporal Fluid State Prediction
+# Deep Temporal Fluid State Prediction
 ----------------------------------------------------
 
 ## Project layout
